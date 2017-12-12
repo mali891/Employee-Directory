@@ -8,8 +8,10 @@ $(document).ready(function() {
         birthdays = [],
         clicked;
 
+    //init materialize modal
     $('#modal1').modal();
 
+    //begin ajax call to retrieve directory information
     $.ajax({
         url: 'https://randomuser.me/api/?results=12&?nat=en&?inc=name,location,email,dob,phone,picture',
         dataType: 'json',
@@ -37,6 +39,7 @@ $(document).ready(function() {
 
             $('.employee-entry').html(htmlString);
 
+            //construct readable birthday using current format
             for(var i = 0; i < birthdays.length; i++) {
                 birthdays[i] = birthdays[i].split(' ')[0];
                 birthdays[i] = birthdays[i].split('-');
@@ -44,6 +47,7 @@ $(document).ready(function() {
                 birthdays[i] = birthdays[i][2] + '/' + birthdays[i][1] + '/' + birthdays[i][0];
             }
 
+            //event handler to add relevant details to modal window
             $('.employee-container').click(function() {
                 clicked = $('.employee-container').index(this);
 
